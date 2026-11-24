@@ -17,6 +17,7 @@ import Countdown from "./components/Countdown";
 import RSVP from "./components/RSVP";
 import MusicPlayer from "./components/MusicPlayer";
 
+
 function easeInOutCubic(t) {
   return t < 0.5
     ? 4 * t * t * t
@@ -49,39 +50,31 @@ function SectionHeading({ eyebrow, title, subtitle, light = false }) {
   );
 }
 
-function downloadCalendar() {
-  const ics = [
-    "BEGIN:VCALENDAR",
-    "VERSION:2.0",
-    "PRODID:-//Gepekris Pasar Baru//Jiwa dan Nafas Natal//ID",
-    "CALSCALE:GREGORIAN",
-    "METHOD:PUBLISH",
-    "BEGIN:VEVENT",
-    "UID:jiwa-nafas-natal-20261213@gepekris-pasarbaru",
-    "DTSTAMP:20261124T000000Z",
-    "DTSTART:20261213T090000Z",
-    "DTEND:20261213T130000Z",
-    "SUMMARY:Jiwa & Nafas Natal - Gepekris Pasar Baru",
-    `LOCATION:${event.address.replaceAll(",", "\\,")}`,
-    "DESCRIPTION:Ibadah & Perayaan Natal Gepekris Pasar Baru. Pembicara: GI. Freda Adjan.",
-    "END:VEVENT",
-    "END:VCALENDAR"
-  ].join("\r\n");
+const addToCalendar = () => {
+  const event = {
+    title: "Perayaan Natal Gepekris Pasar Baru",
+    description:
+      "Perayaan Natal Gepekris Pasar Baru dengan tema Jiwa & Nafas Natal. Sampai bertemu dalam sukacita Natal.",
+    location:
+      "Jl. Kelinci Raya No.66 B-C, RT.4/RW.3, Ps. Baru, Kecamatan Sawah Besar, Kota Jakarta Pusat",
+    start: "20261213T090000Z",
+    end: "20261213T130000Z",
+  };
 
-  const blob = new Blob([ics], {
-    type: "text/calendar;charset=utf-8"
-  });
+  const calendarUrl = new URL(
+    "https://calendar.google.com/calendar/render"
+  );
 
-  const url = URL.createObjectURL(blob);
-  const link = document.createElement("a");
+  calendarUrl.search = new URLSearchParams({
+    action: "TEMPLATE",
+    text: event.title,
+    details: event.description,
+    location: event.location,
+    dates: `${event.start}/${event.end}`,
+  }).toString();
 
-  link.href = url;
-  link.download = "jiwa-dan-nafas-natal-2026.ics";
-  link.click();
-
-  URL.revokeObjectURL(url);
-}
-
+  window.open(calendarUrl.toString(), "_blank", "noopener,noreferrer");
+};
 
 function PosterHero({ cover = false, onOpen }) {
   return (
@@ -94,7 +87,7 @@ function PosterHero({ cover = false, onOpen }) {
     >
       <div className="poster-canvas">
         <div className="poster-brand">
-          <img src="/images/logo-gepekris.png" alt="Logo Gepekris" width="60" height="60" />
+          <img src="/images/logo-gepekris.webp" alt="Logo Gepekris" width="60" height="60" />
         </div>
 
         <div className="poster-heading">
@@ -404,14 +397,14 @@ export default function App() {
       ? window.location.href.split("#")[0]
       : "");
 
-  const shareText = `Shalom! Dengan penuh sukacita, kami mengundang Anda untuk menghadiri Ibadah & Perayaan Natal Gepekris Pasar Baru dengan tema “${event.theme}”.
+  const shareText = `Shalom! Dengan penuh sukacita, kami mengundang Bapak/Ibu/Saudara/Saudari untuk menghadiri Ibadah & Perayaan Natal Gepekris Pasar Baru dengan tema “${event.theme}”.
 
 Minggu, 13 Desember 2026
 Pukul 16.00–20.00 WIB
 Pembicara: ${event.speaker}
 Lokasi: ${event.address}
 
-Informasi dan konfirmasi kehadiran: ${siteUrl}`;
+Informasi lebih lanjut: ${siteUrl}`;
 
   const shareUrl = `https://wa.me/?text=${encodeURIComponent(shareText)}`;
 
@@ -449,7 +442,7 @@ Informasi dan konfirmasi kehadiran: ${siteUrl}`;
               </h2> */}
 
           <p className="mt-4 font-sans text-xs font-medium uppercase tracking-[.2em] text-champagne sm:text-sm">
-            {event.bibleReference} · {event.bibleTranslation}
+            {event.bibleReference} {event.bibleTranslation}
           </p>
 
           <div className="mx-auto mt-8 max-w-4xl border border-champagne/25 bg-white/5 px-6 py-8 font-display text-lg leading-relaxed text-ivory sm:px-10 sm:py-10 sm:text-xl lg:text-2xl">
@@ -580,11 +573,12 @@ Informasi dan konfirmasi kehadiran: ${siteUrl}`;
 
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <button
-              onClick={downloadCalendar}
+              type="button"
+              onClick={addToCalendar}
               className="gold-button"
             >
-              <Download size={16} />
-              Tambah ke Kalender (.ics)
+              Tambah Kalender
+              <CalendarDays size={16} />
             </button>
 
             <a
@@ -637,7 +631,7 @@ Informasi dan konfirmasi kehadiran: ${siteUrl}`;
               />
 
               <div className="speaker-photo-placeholder">
-                <img src="/images/speaker-photo.png" alt="Foto Pembicara" width="60" height="60" />
+                <img src="/images/speaker-photo.webp" alt="Foto Pembicara" width="60" height="60" />
 
               </div>
             </div>
@@ -677,7 +671,7 @@ Informasi dan konfirmasi kehadiran: ${siteUrl}`;
                 controls
                 playsInline
                 preload="metadata"
-                poster="/images/hero-landscape.png"
+                poster="/images/hero-landscape.webp"
                 className="w-full h-auto"
                 onPlay={handleVideoPlay}
                 onPause={handleVideoPause}
@@ -774,7 +768,7 @@ Informasi dan konfirmasi kehadiran: ${siteUrl}`;
 
       <audio
         ref={audioRef}
-        src="/music/backsound.mp3"
+        src="https://qhhvpvihzmvmpmkxxlyw.supabase.co/storage/v1/object/public/invitation/musics/backsound.mp3"
         loop
         preload="auto"
         onPlay={() => setIsPlaying(true)}

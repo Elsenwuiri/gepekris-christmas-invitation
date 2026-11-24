@@ -10,12 +10,12 @@ export const event = {
   timeLabel: "16.00–20.00 WIB",
   address: "Jl. Kelinci Raya No.66 B-C, RT.4/RW.3, Ps. Baru, Kecamatan Sawah Besar, Kota Jakarta Pusat",
   bibleReference: "Yohanes 3:16",
-  bibleTranslation: "Terjemahan Baru (TB)",
+  bibleTranslation: "(TB)",
   bibleText: "",
   mapQuery: "Gepekris Pasar Baru, Jl. Kelinci Raya No.66 B-C, RT.4/RW.3, Pasar Baru, Sawah Besar, Jakarta Pusat",
-  speakerPhoto: "/images/speaker-photo.jpg",
+  speakerPhoto: "/images/speaker-photo.webp",
   teaserVideo: "/videos/christmas-teaser.mp4",
-  teaserPoster: "/images/christmas-teaser-poster.jpg",
+  teaserPoster: "/images/christmas-teaser-poster.webp",
   contacts: [
     {
       name: "Dkn. Ivan Ekajaya",
@@ -23,10 +23,10 @@ export const event = {
       whatsapp: "628179820857"
     },
     {
-      name: "Gabriel",
+      name: "Gabriel Ervian Hariono",
       phone: "+62 838-0231-1001",
       whatsapp: "6283802311001"
     }
   ],
-  siteUrl: ""
+  siteUrl: "https://gepekris-christmas-invitation.my.id"
 };

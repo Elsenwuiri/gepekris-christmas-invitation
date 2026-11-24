@@ -22,7 +22,7 @@
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    --hero-bg: url("/images/hero-landscape.png");
+    --hero-bg: url("/images/hero-landscape.webp");
 }
 
 * {
@@ -31,6 +31,7 @@
 
 html {
     min-width: 320px;
+    scroll-behavior: auto;
 }
 
 body {
@@ -39,6 +40,8 @@ body {
     margin: 0;
     background: #FFF9EF;
     font-family: var(--font-sans);
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 button,
@@ -79,7 +82,7 @@ iframe {
    ========================================================= */
 
 :root {
-    --hero-bg: url("/images/hero-landscape.png");
+    --hero-bg: url("/images/hero-landscape.webp");
 }
 
 .poster-hero {
@@ -92,7 +95,7 @@ iframe {
     background-image:
         linear-gradient(rgba(255, 249, 239, 0.18),
             rgba(255, 249, 239, 0.18)),
-        url("/images/hero-landscape.png");
+        url("/images/hero-landscape.webp");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -108,7 +111,7 @@ iframe {
     background-image:
         linear-gradient(rgba(255, 249, 239, 0.18),
             rgba(255, 249, 239, 0.18)),
-        url("/images/hero-landscape.png");
+        url("/images/hero-landscape.webp");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -606,7 +609,7 @@ iframe {
         background-image:
             linear-gradient(rgba(255, 249, 239, 0.18),
                 rgba(255, 249, 239, 0.18)),
-            url("/images/hero-portrait.jpeg");
+            url("/images/hero-portrait.webp");
 
         background-size: cover;
         background-position: center;
@@ -624,7 +627,7 @@ iframe {
         background-image:
             linear-gradient(rgba(255, 249, 239, 0.18),
                 rgba(255, 249, 239, 0.18)),
-            url("/images/hero-portrait.jpeg");
+            url("/images/hero-portrait.webp");
 
         background-size: cover;
         background-position: center;
@@ -1526,7 +1529,7 @@ iframe {
     background-color: #120B08;
     background-image:
         linear-gradient(rgba(18, 11, 8, 0.08), rgba(18, 11, 8, 0.08)),
-        url("/images/hero-landscape.png");
+        url("/images/hero-landscape.webp");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -1542,7 +1545,7 @@ iframe {
     background-color: #120B08;
     background-image:
         linear-gradient(rgba(18, 11, 8, 0.08), rgba(18, 11, 8, 0.08)),
-        url("/images/hero-landscape.png");
+        url("/images/hero-landscape.webp");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -1824,7 +1827,7 @@ iframe {
         min-height: 100svh;
         background-image:
             linear-gradient(rgba(18, 11, 8, 0.18), rgba(18, 11, 8, 0.18)),
-            url("/images/hero-portrait.jpeg");
+            url("/images/hero-portrait.webp");
         background-size: cover;
         background-position: center;
     }
@@ -1939,7 +1942,7 @@ iframe {
                 rgba(0, 0, 0, 0) 78%),
             linear-gradient(rgba(18, 11, 8, 0.08),
                 rgba(18, 11, 8, 0.08)),
-            url("/images/hero-landscape.png");
+            url("/images/hero-landscape.webp");
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
