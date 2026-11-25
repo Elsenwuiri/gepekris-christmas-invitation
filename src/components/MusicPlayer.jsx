@@ -44,7 +44,7 @@ export default function MusicPlayer({
       {!isControlled && (
         <audio
           ref={internalAudioRef}
-          src="https://qhhvpvihzmvmpmkxxlyw.supabase.co/storage/v1/object/public/invitation/musics/backsound.mp3"
+          src="https://qhhvpvihzmvmpmkxxlyw.supabase.co/storage/v1/object/public/invitation/musics/backsound-music.mp3"
           loop
           preload="auto"
           onEnded={() => setInternalPlaying(false)}

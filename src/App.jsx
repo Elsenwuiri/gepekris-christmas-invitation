@@ -9,13 +9,15 @@ import {
   Heart,
   Share2,
   Download,
-  MessageCircle
+  MessageCircle,
+  Star
 } from "lucide-react";
 
 import { event } from "./data/event";
 import Countdown from "./components/Countdown";
 import RSVP from "./components/RSVP";
 import MusicPlayer from "./components/MusicPlayer";
+import { Instagram } from "lucide-react";
 
 
 function easeInOutCubic(t) {
@@ -87,13 +89,12 @@ function PosterHero({ cover = false, onOpen }) {
     >
       <div className="poster-canvas">
         <div className="poster-brand">
-          <img src="/images/logo-gepekris.webp" alt="Logo Gepekris" width="60" height="60" />
+          <img src="/images/logo-gepekris.webp" alt="Logo Gepekris" width="50" height="50" />
         </div>
 
         <div className="poster-heading">
           <p className="poster-eyebrow">
-            Ibadah & Perayaan Natal
-            <span>Gepekris Pasar Baru</span>
+            Ibadah & Perayaan Natal Gepekris Pasar Baru
           </p>
 
           <h1 className="poster-title">
@@ -133,6 +134,12 @@ function PosterHero({ cover = false, onOpen }) {
               Minggu,
               <span>13 Desember 2026</span>
             </span>
+          </div>
+
+          <div className="poster-event-divider">
+            <span />
+            <Star size={12} strokeWidth={1.3} />
+            <span />
           </div>
 
           <div className="poster-event-item">
@@ -397,16 +404,9 @@ export default function App() {
       ? window.location.href.split("#")[0]
       : "");
 
-  const shareText = `Shalom! Dengan penuh sukacita, kami mengundang Bapak/Ibu/Saudara/Saudari untuk menghadiri Ibadah & Perayaan Natal Gepekris Pasar Baru dengan tema “${event.theme}”.
+  const shareText = event.shareText;
 
-Minggu, 13 Desember 2026
-Pukul 16.00–20.00 WIB
-Pembicara: ${event.speaker}
-Lokasi: ${event.address}
-
-Informasi lebih lanjut: ${siteUrl}`;
-
-  const shareUrl = `https://wa.me/?text=${encodeURIComponent(shareText)}`;
+  const shareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`;
 
   return (
     <main className="bg-ivory">
@@ -433,52 +433,42 @@ Informasi lebih lanjut: ${siteUrl}`;
             strokeWidth={1.2}
           />
 
-          <p className="eyebrow font-sans text-xs font-semibold uppercase tracking-[0.2em] text-champagne sm:text-sm">
-            Firman Tuhan
+          <p className="eyebrow font-display text-[24px] font-semibold uppercase tracking-[0.2em] text-champagne sm:text-[24px]">
+            THE MESSAGE OF CHRISTMAS
           </p>
 
-          {/* <h2 className="section-title mt-4 text-ivory">
-                Kabar Sukacita
-              </h2> */}
-
-          <p className="mt-4 font-sans text-xs font-medium uppercase tracking-[.2em] text-champagne sm:text-sm">
+          <p className="mt-4 font-display text-[16px] font-medium uppercase tracking-[0.2em] text-champagne sm:text-[20px]">
             {event.bibleReference} {event.bibleTranslation}
           </p>
 
           <div className="mx-auto mt-8 max-w-4xl border border-champagne/25 bg-white/5 px-6 py-8 font-display text-lg leading-relaxed text-ivory sm:px-10 sm:py-10 sm:text-xl lg:text-2xl">
-            {event.bibleText ||
-              "Karena begitu besar kasih Allah akan dunia ini, sehingga Ia telah mengaruniakan Anak-Nya yang tunggal, supaya setiap orang yang percaya kepada-Nya tidak binasa, melainkan beroleh hidup yang kekal."}
-          </div>
-        </div>
-      </section>
+            {event.bibleText || (
+              <>
+                <p>
+                  "Karena begitu besar kasih Allah akan dunia ini, sehingga Ia telah
+                  mengaruniakan Anak-Nya yang tunggal, supaya setiap orang yang
+                  percaya kepada-Nya tidak binasa, melainkan beroleh hidup yang kekal."
+                </p>
 
-      <section
-        id="season"
-        className="relative bg-ivory px-6 py-24 sm:py-32"
-      >
-        <div className="pointer-events-none absolute left-0 top-20 h-64 w-64 rounded-full bg-champagne/10 blur-3xl" />
+                <p className="mt-6">
+                  Natal bukan hanya tentang perayaan yang datang setiap tahun. Natal
+                  adalah kisah kasih Allah yang begitu besar, kasih yang dinyatakan
+                  melalui kehadiran Yesus Kristus ke dunia.
+                </p>
 
-        <div className="relative mx-auto max-w-5xl text-center">
-          <p className="font-sans text-xs font-semibold uppercase tracking-[0.25em] text-antique sm:text-sm">
-            Musim Kasih
-          </p>
+                <p className="mt-6">
+                  Di tengah rutinitas dan kesibukan kita, mari berhenti sejenak untuk
+                  mengingat kembali Sang Sumber Kehidupan. Sebab di dalam Kristus,
+                  kita menemukan jiwa dan nafas Natal yang sesungguhnya—kasih yang
+                  menghidupkan, pengharapan yang memulihkan, dan sukacita yang
+                  memberi arti bagi kehidupan.
+                </p>
 
-          <h2 className="mt-4 font-display text-4xl font-medium tracking-wide text-espresso sm:text-5xl lg:text-6xl">
-            Jiwa Natal
-          </h2>
-
-          <p className="section-subtitle font-sans mx-auto mt-7 max-w-3xl text-lg leading-relaxed text-espresso/85 sm:text-xl lg:text-[22px]">
-            Natal bukan sekadar perayaan tahunan. Natal adalah kisah kasih Allah yang dinyatakan melalui kehadiran Yesus Kristus ke dunia.
-          </p>
-
-          <p className="font-sans mx-auto mt-5 max-w-3xl text-[15px] leading-relaxed text-espresso/75 sm:text-base lg:text-[17px]">
-            Di tengah rutinitas dan kesibukan, mari berhenti sejenak untuk mengingat kembali Sang Sumber Kehidupan. Dalam Kristus, kita menemukan jiwa dan nafas Natal yang sesungguhnya—kasih yang menghidupkan, pengharapan yang memulihkan, dan sukacita yang memberi arti bagi kehidupan.
-          </p>
-
-          <div className="ornament mt-8 text-antique">
-            <span />
-            ✦
-            <span />
+                <p className="mt-8 font-semibold italic">
+                  With love, GEPEKRIS Pasar Baru
+                </p>
+              </>
+            )}
           </div>
         </div>
       </section>
@@ -489,15 +479,15 @@ Informasi lebih lanjut: ${siteUrl}`;
       >
         <div className="mx-auto max-w-5xl">
           <div className="text-center">
-            <p className="font-sans text-xs font-semibold uppercase tracking-[0.25em] text-antique sm:text-sm">
+            <p className="font-display text-[16px] font-semibold uppercase tracking-[0.3em] text-antique sm:text-[20px]">
               Tandai Tanggal
             </p>
 
-            <h2 className="mt-4 font-display text-4xl font-medium tracking-wide text-white sm:text-5xl lg:text-6xl">
+            <h2 className="mt-4 font-display text-[42px] font-semibold tracking-wide text-white sm:text-[58px] lg:text-[72px]">
               Jiwa & Nafas Natal
             </h2>
 
-            <p className="section-subtitle font-sans mx-auto mt-5 max-w-2xl text-lg font-medium leading-relaxed text-champagne/90 sm:text-xl lg:text-[22px]">
+            <p className="font-display mx-auto mt-5 max-w-2xl text-[20px] font-medium leading-relaxed tracking-wide text-champagne/90 sm:text-[24px] lg:text-[28px]">
               13 Desember 2026 · 16.00 WIB
             </p>
           </div>
@@ -513,12 +503,19 @@ Informasi lebih lanjut: ${siteUrl}`;
         className="bg-midnight px-6 py-24 sm:py-28"
       >
         <div className="mx-auto max-w-6xl">
-          <SectionHeading
-            eyebrow="Waktu & Tempat"
-            title="Informasi Perayaan"
-            subtitle="Catat waktu dan lokasi ibadah serta perayaan Natal."
-            light
-          />
+          <div className="text-center">
+            <p className="font-display text-[16px] font-semibold uppercase tracking-[0.3em] text-antique sm:text-[20px]">
+              Waktu & Tempat
+            </p>
+
+            <h2 className="mt-4 font-display text-[42px] font-semibold tracking-wide text-white sm:text-[58px] lg:text-[72px]">
+              Informasi Perayaan
+            </h2>
+
+            <p className="mx-auto mt-5 max-w-2xl font-display text-[18px] font-medium leading-relaxed tracking-wide text-champagne/90 sm:text-[22px] lg:text-[26px]">
+              Catat waktu dan lokasi ibadah serta perayaan Natal.
+            </p>
+          </div>
 
           <div className="grid gap-5 md:grid-cols-3">
             <div className="event-card">
@@ -581,7 +578,7 @@ Informasi lebih lanjut: ${siteUrl}`;
               <CalendarDays size={16} />
             </button>
 
-            <a
+            <button
               href={mapUrl}
               target="_blank"
               rel="noreferrer"
@@ -590,7 +587,7 @@ Informasi lebih lanjut: ${siteUrl}`;
               <MapPin size={16} />
               Google Maps
               <ArrowUpRight size={16} />
-            </a>
+            </button>
           </div>
 
           <div className="mx-auto mt-10 max-w-4xl overflow-hidden border border-white/10">
@@ -611,13 +608,10 @@ Informasi lebih lanjut: ${siteUrl}`;
       >
         <div className="mx-auto max-w-5xl">
           <div className="text-center">
-            <p className="font-sans text-xs font-semibold uppercase tracking-[0.2em] text-antique sm:text-sm">
-              Pembicara Tamu
+            <p className="font-display mb-10 text-[20px] font-semibold uppercase tracking-[0.3em] text-antique sm:text-[24px]">
+              Christmas Speaker
             </p>
 
-            <p className="section-subtitle font-sans mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-espresso/85 sm:text-xl lg:text-[22px]">
-              Firman Tuhan dalam perayaan Natal Gepekris Pasar Baru.
-            </p>
           </div>
 
           <div className="speaker-card">
@@ -637,15 +631,15 @@ Informasi lebih lanjut: ${siteUrl}`;
             </div>
 
             <div className="speaker-copy">
-              <p className="eyebrow font-sans text-xs font-semibold uppercase tracking-[0.2em] text-antique sm:text-sm">
-                Pembicara Tamu
+              <p className="font-display text-[20px] font-medium uppercase tracking-[0.18em] text-antique sm:text-[24px]">
+                Pembicara Natal
               </p>
 
-              <h3 className="mt-3 font-display text-4xl text-espresso sm:text-5xl">
+              <h3 className="mt-3 font-display text-[42px] font-medium italic tracking-wide text-espresso sm:text-[52px] lg:text-[60px]">
                 {event.speaker}
               </h3>
 
-              <p className="font-sans mt-4 text-base font-medium leading-relaxed text-espresso/70 sm:text-lg">
+              <p className="mt-4 font-display text-[20px] font-medium italic leading-relaxed tracking-wide text-espresso/70 sm:text-[24px]">
                 Ibadah & Perayaan Natal 2026
               </p>
             </div>
@@ -658,12 +652,22 @@ Informasi lebih lanjut: ${siteUrl}`;
         className="bg-espresso px-6 py-24 sm:py-28"
       >
         <div className="mx-auto max-w-6xl">
-          <SectionHeading
-            eyebrow="Suasana Natal"
-            title="Teaser Natal & Kontak"
-            subtitle="Saksikan teaser dan hubungi kami untuk informasi lebih lanjut."
+          <div className="text-center">
+            <p className="font-display text-[16px] font-semibold uppercase tracking-[0.25em] text-antique sm:text-[20px]">
+              Suasana Natal
+            </p>
+
+            <h2 className="mt-4 font-display text-[40px] font-semibold tracking-wide text-white sm:text-[54px] lg:text-[64px]">
+              Teaser Natal & Kontak
+            </h2>
+
+            <p className="mx-auto mt-5 max-w-2xl font-display text-[18px] font-medium leading-relaxed tracking-wide text-champagne/90 sm:text-[22px] lg:text-[24px]">
+              Saksikan teaser dan hubungi kami untuk informasi lebih lanjut.
+            </p>
+          </div>
+          <SectionHeading>
             light
-          />
+          </SectionHeading>
 
           <div className="grid gap-10 lg:grid-cols-[1.2fr_.8fr] lg:items-center">
             <div className="teaser-frame">
@@ -687,7 +691,7 @@ Informasi lebih lanjut: ${siteUrl}`;
 
             <div>
               <p className="eyebrow font-sans text-xs font-semibold uppercase tracking-[0.2em] text-champagne sm:text-sm">
-                Kontak
+                Contact
               </p>
 
               <h3 className="mt-3 font-display text-3xl text-ivory sm:text-4xl">
@@ -720,7 +724,34 @@ Informasi lebih lanjut: ${siteUrl}`;
                       <MessageCircle size={18} />
                     </a>
                   </div>
+
                 ))}
+              </div>
+              <h3 className="mt-3 font-display text-3xl text-ivory sm:text-4xl">
+                For More Information
+              </h3>
+              <div className="mt-6">
+                <div className="contact-card">
+                  <div>
+                    <p className="font-display text-xl text-ivory">
+                      Stay Connected With Us
+                    </p>
+
+                    <p className="mt-1 text-xs text-ivory/55">
+                      Follow us on Instagram
+                    </p>
+                  </div>
+
+                  <a
+                    href="https://www.instagram.com/gepekrispb/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Instagram GEPEKRIS Pasar Baru"
+                    className="contact-link"
+                  >
+                    <Instagram size={18} />
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -735,40 +766,69 @@ Informasi lebih lanjut: ${siteUrl}`;
           <span />
         </div>
 
-        <p className="mt-7 font-display text-4xl text-ivory">
-          Jiwa <span className="italic text-champagne">&</span> Nafas Natal
-        </p>
+        <div className="mx-auto max-w-4xl text-center">
 
-        <p className="mt-3 text-[10px] uppercase tracking-[.25em] text-ivory/45">
-          Gepekris Pasar Baru · 13 December 2026
-        </p>
+          <div className="mx-auto mb-7 flex items-center justify-center gap-4">
+            <span className="h-px w-12 bg-champagne/40" />
+            <span className="font-display text-[13px] italic tracking-[0.2em] text-champagne/70">
+              With Love & Blessings
+            </span>
+            <span className="h-px w-12 bg-champagne/40" />
+          </div>
 
-        <p className="font-sans mx-auto mt-7 max-w-xl text-[15px] leading-relaxed text-ivory/70 sm:text-base lg:text-lg">
-          Kiranya damai dan kasih Kristus memenuhi hati dan kehidupan kita.
-        </p>
+          <h2 className="font-display text-[42px] font-medium tracking-wide text-ivory sm:text-[54px] lg:text-[64px]">
+            Jiwa <span className="italic text-champagne">&</span> Nafas Natal
+          </h2>
 
-        <a
-          href={shareUrl}
-          target="_blank"
-          rel="noreferrer"
-          className="gold-button mt-9"
-        >
-          <Share2 size={16} />
-          Bagikan Undangan Melalui WhatsApp
-        </a>
+          <p className="mt-4 font-display text-[13px] font-medium uppercase tracking-[0.25em] text-ivory/50 sm:text-[15px]">
+            GEPEKRIS Pasar Baru
+            <span className="mx-3 text-champagne/60">·</span>
+            13 December 2026
+          </p>
 
-        <p className="mt-4 text-[10px] text-ivory/35">
-          Bagikan undangan ini kepada keluarga dan sahabat.
-        </p>
+          <div className="mx-auto my-8 h-px w-16 bg-champagne/40" />
 
-        <div className="mt-14 border-t border-white/10 pt-6 text-[10px] tracking-wide text-ivory/30">
-          © 2026 Gepekris Pasar Baru
+          <p className="mx-auto max-w-xl font-display text-[21px] italic leading-relaxed text-champagne/85 sm:text-[25px] lg:text-[27px]">
+            Kiranya damai dan kasih Kristus memenuhi hati dan kehidupan kita.
+          </p>
+
+          <p className="mt-5 font-display text-[15px] tracking-wide text-ivory/55 sm:text-[17px]">
+            Sampai berjumpa dalam sukacita Natal.
+          </p>
+
+          <div className="mt-10">
+            <button
+              type="button"
+              onClick={() => window.open(shareUrl, "_blank", "noopener,noreferrer")}
+              className="gold-button inline-flex items-center gap-3"
+            >
+              <Share2 size={17} />
+              <span className="font-display text-[16px] tracking-wide sm:text-[18px]">
+                Bagikan Undangan
+              </span>
+            </button>
+
+            <p className="mt-4 font-display text-[14px] italic text-ivory/40">
+              Sebarkan sukacita Natal kepada keluarga dan sahabat.
+            </p>
+          </div>
+
+          <div className="mt-16 border-t border-champagne/15 pt-7">
+            <p className="font-display text-[15px] tracking-[0.15em] text-ivory/50">
+              GEPEKRIS PASAR BARU
+            </p>
+
+            <p className="mt-2 font-display text-[12px] italic tracking-wide text-ivory/30">
+              © 2026 · All Rights Reserved
+            </p>
+          </div>
+
         </div>
       </footer>
 
       <audio
         ref={audioRef}
-        src="https://qhhvpvihzmvmpmkxxlyw.supabase.co/storage/v1/object/public/invitation/musics/backsound.mp3"
+        src="https://qhhvpvihzmvmpmkxxlyw.supabase.co/storage/v1/object/public/invitation/musics/backsound-music.mp3"
         loop
         preload="auto"
         onPlay={() => setIsPlaying(true)}

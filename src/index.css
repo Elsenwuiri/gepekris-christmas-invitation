@@ -201,7 +201,7 @@ iframe {
     align-items: center;
     margin: 5px 0 0;
     font-family: "Cormorant Garamond", serif;
-    font-size: clamp(58px, 7.2vw, 112px);
+    font-size: clamp(64px, 8vw, 128px);
     font-weight: 600;
     font-style: italic;
     line-height: 0.82;
@@ -678,7 +678,7 @@ iframe {
 }
 
 .poster-title {
-    font-size: clamp(57px, 13.8vw, 88px);
+    font-size: clamp(64px, 16vw, 100px);
     line-height: 0.9;
 }
 
@@ -707,7 +707,7 @@ iframe {
 }
 
 .poster-scripture-reference {
-    font-size: 33px;
+    font-size: 24px;
 }
 
 .poster-speaker {
@@ -1362,7 +1362,7 @@ iframe {
 
     .poster-scripture-reference {
         margin-top: 7px;
-        font-size: 30px;
+        font-size: 24px;
     }
 
     .poster-speaker {
@@ -2081,4 +2081,29 @@ iframe {
     .poster-footer {
         font-size: 10px;
     }
+}
+
+.poster-event-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: var(--champagne);
+    opacity: 0.75;
+}
+
+.poster-event-divider span {
+    display: block;
+    width: 28px;
+    height: 1px;
+    background: currentColor;
+}
+
+button,
+.button,
+a.button,
+[type="button"],
+[type="submit"],
+[type="reset"] {
+    border-radius: 14px;
 }
