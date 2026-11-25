@@ -153,8 +153,8 @@ iframe {
 }
 
 .poster-brand img {
-    width: 60px;
-    height: 60px;
+    width: 35px;
+    height: 35px;
     object-fit: contain;
     flex-shrink: 0;
 }
@@ -846,8 +846,8 @@ iframe {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: 1px solid rgba(217, 166, 65, 0.25);
-    background: rgba(255, 255, 255, 0.035);
+    border: 1px solid rgba(217, 166, 65, 0.35);
+    background: rgba(255, 255, 255, 0.06);
     padding: 15px 8px;
     text-align: center;
 }
@@ -881,8 +881,8 @@ iframe {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: 1px solid rgba(217, 166, 65, 0.22);
-    background: rgba(255, 255, 255, 0.025);
+    border: 1px solid rgba(217, 166, 65, 0.3);
+    background: rgba(255, 255, 255, 0.05);
     padding: 28px 20px;
     text-align: center;
     transition:
@@ -893,8 +893,8 @@ iframe {
 
 .event-card:hover {
     transform: translateY(-4px);
-    border-color: rgba(217, 166, 65, 0.65);
-    background: rgba(217, 166, 65, 0.055);
+    border-color: rgba(217, 166, 65, 0.75);
+    background: rgba(217, 166, 65, 0.08);
 }
 
 .event-card-label {
@@ -931,12 +931,15 @@ iframe {
     border: 1px solid rgba(169, 99, 25, 0.15);
     background: rgba(255, 255, 255, 0.48);
     padding: 35px;
+    border-radius: 24px;
+    overflow: hidden;
 }
 
 .speaker-photo-wrap {
     position: relative;
     min-height: 340px;
     overflow: hidden;
+    border-radius: 16px;
     /* background: #E8D8BF; */
 }
 
@@ -964,100 +967,6 @@ iframe {
 
 .speaker-copy {
     padding: 20px 0;
-}
-
-
-/* =========================================================
-   GALLERY
-   ========================================================= */
-
-.gallery-item {
-    position: relative;
-    display: block;
-    min-height: 220px;
-    overflow: hidden;
-    border: 0;
-    background: #E8D8BF;
-    padding: 0;
-    text-align: left;
-}
-
-.gallery-item img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    min-height: 220px;
-    object-fit: cover;
-    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.gallery-item:hover img {
-    transform: scale(1.06);
-}
-
-.gallery-overlay {
-    position: absolute;
-    right: 12px;
-    bottom: 12px;
-    color: #FFF9EF;
-    font-family: "Cormorant Garamond", serif;
-    font-size: 20px;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
-}
-
-.lightbox {
-    position: fixed;
-    inset: 0;
-    z-index: 200;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(18, 11, 8, 0.96);
-    padding: 55px 60px;
-}
-
-.lightbox>img {
-    display: block;
-    max-width: min(100%, 1100px);
-    max-height: 85vh;
-    object-fit: contain;
-}
-
-.lightbox-close,
-.lightbox-arrow {
-    position: absolute;
-    z-index: 2;
-    display: grid;
-    width: 44px;
-    height: 44px;
-    place-items: center;
-    border: 1px solid rgba(255, 249, 239, 0.3);
-    background: rgba(255, 249, 239, 0.08);
-    color: #FFF9EF;
-    transition: background 0.2s ease;
-}
-
-.lightbox-close:hover,
-.lightbox-arrow:hover {
-    background: rgba(217, 166, 65, 0.3);
-}
-
-.lightbox-close {
-    top: 20px;
-    right: 20px;
-}
-
-.lightbox-arrow {
-    top: 50%;
-    transform: translateY(-50%);
-}
-
-.lightbox-arrow.left-4 {
-    left: 16px;
-}
-
-.lightbox-arrow.right-4 {
-    right: 16px;
 }
 
 
@@ -1123,8 +1032,8 @@ iframe {
     align-items: center;
     justify-content: space-between;
     gap: 20px;
-    border: 1px solid rgba(217, 166, 65, 0.2);
-    background: rgba(255, 255, 255, 0.035);
+    border: 1px solid rgba(217, 166, 65, 0.3);
+    background: rgba(255, 255, 255, 0.05);
     padding: 15px 18px;
 }
 
@@ -1144,71 +1053,6 @@ iframe {
 .contact-link:hover {
     background: #D9A641;
     color: #120B08;
-}
-
-
-/* =========================================================
-   RSVP FORM
-   ========================================================= */
-
-.field-label {
-    display: flex;
-    flex-direction: column;
-    gap: 9px;
-    color: #2B160B;
-    font-family: var(--font-sans);
-    font-size: 12px;
-    font-weight: 600;
-    line-height: 1.6;
-}
-
-.form-input {
-    display: block;
-    width: 100%;
-    min-height: 46px;
-    border: 1px solid rgba(43, 22, 11, 0.2);
-    border-radius: 0;
-    outline: none;
-    background: #FFFCF6;
-    padding: 11px 13px;
-    color: #2B160B;
-    font-size: 13px;
-    font-weight: 400;
-    transition: border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.form-input::placeholder {
-    color: rgba(43, 22, 11, 0.38);
-}
-
-.form-input:focus {
-    border-color: #A96319;
-}
-
-.choice-card {
-    display: flex;
-    min-height: 65px;
-    align-items: center;
-    gap: 12px;
-    border: 1px solid rgba(43, 22, 11, 0.16);
-    background: #FFFCF6;
-    padding: 13px;
-    color: #2B160B;
-    font-size: 11px;
-    line-height: 1.5;
-    cursor: pointer;
-    transition:
-        border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-        background 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.choice-card input {
-    accent-color: #A96319;
-}
-
-.choice-active {
-    border-color: #A96319;
-    background: rgba(217, 166, 65, 0.1);
 }
 
 
@@ -1419,10 +1263,12 @@ iframe {
         grid-template-columns: 1fr;
         gap: 25px;
         padding: 20px;
+        border-radius: 20px;
     }
 
     .speaker-photo-wrap {
         min-height: 320px;
+        border-radius: 14px;
     }
 
     .speaker-copy {
@@ -1499,6 +1345,7 @@ iframe {
 
     .speaker-photo-wrap {
         min-height: 260px;
+        border-radius: 12px;
     }
 }
 
@@ -1618,6 +1465,7 @@ iframe {
     font-weight: 700;
     line-height: 1.05;
     letter-spacing: 0;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
 }
 
 .poster-heading {
@@ -1634,6 +1482,7 @@ iframe {
     font-size: clamp(15px, 1.8vw, 25px);
     font-weight: 700;
     letter-spacing: 0;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
 }
 
 .poster-title {
@@ -1696,6 +1545,7 @@ iframe {
     font-size: clamp(20px, 2.1vw, 34px);
     font-style: italic;
     font-weight: 500;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.35);
 }
 
 .poster-speaker {
@@ -1714,6 +1564,7 @@ iframe {
     font-size: clamp(17px, 1.8vw, 27px);
     font-weight: 500;
     letter-spacing: 0;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
 }
 
 .poster-speaker-name {
@@ -1723,6 +1574,7 @@ iframe {
     font-size: clamp(29px, 3vw, 47px);
     font-weight: 700;
     line-height: 1.05;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.35);
 }
 
 .poster-event-details {
@@ -1748,6 +1600,7 @@ iframe {
     letter-spacing: 0;
     line-height: 1.1;
     text-align: center;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
 }
 
 .poster-event-item svg {
@@ -1763,6 +1616,7 @@ iframe {
     font-weight: 600;
     line-height: 1.15;
     text-align: center;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
 }
 
 .poster-cover-action {
@@ -1857,7 +1711,7 @@ iframe {
 
     .poster-eyebrow {
         margin-bottom: 9px;
-        font-size: 11px;
+        font-size: 14px;
     }
 
     .poster-title {
@@ -2059,7 +1913,7 @@ iframe {
     }
 
     .poster-scripture-reference {
-        font-size: 21px;
+        font-size: 14px;
     }
 
     .poster-speaker-label {
@@ -2071,7 +1925,7 @@ iframe {
     }
 
     .poster-event-item {
-        font-size: 14px;
+        font-size: 21px;
     }
 
     .poster-address {
@@ -2106,4 +1960,135 @@ a.button,
 [type="submit"],
 [type="reset"] {
     border-radius: 14px;
+}
+
+/* =========================================================
+   CHRISTMAS SECTION GRADIENTS
+   ========================================================= */
+
+.section-verse {
+    background: linear-gradient(180deg,
+            #120B08 0%,
+            #17100B 48%,
+            #21130C 100%);
+}
+
+.section-countdown {
+    background: linear-gradient(180deg,
+            #21130C 0%,
+            #28170E 50%,
+            #2B160B 100%);
+}
+
+.section-event {
+    background: linear-gradient(180deg,
+            #2B160B 0%,
+            #342014 50%,
+            #3A2418 100%);
+}
+
+.section-speaker {
+    background: linear-gradient(180deg,
+            #3A2418 0%,
+            #43291A 50%,
+            #4A2C1A 100%);
+}
+
+.section-teaser {
+    background: linear-gradient(180deg,
+            #4A2C1A 0%,
+            #382218 48%,
+            #21130C 100%);
+}
+
+.section-footer {
+    background: linear-gradient(180deg,
+            #21130C 0%,
+            #17100B 55%,
+            #120B08 100%);
+}
+
+/* Soft transition from poster image to Scripture section */
+.poster-hero-cover::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 0;
+    height: clamp(130px, 24vh, 260px);
+    pointer-events: none;
+    background: linear-gradient(180deg,
+            rgba(18, 11, 8, 0) 0%,
+            rgba(18, 11, 8, 0.55) 48%,
+            #120B08 100%);
+}
+
+/* Keep speaker card readable on the darker background */
+.section-speaker .speaker-card {
+    border: 1px solid rgba(185, 125, 58, 0.25);
+    background: linear-gradient(135deg,
+            #E9DCC9 0%,
+            #E2CFB6 55%,
+            #D9C2A5 100%);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
+}
+
+/* SPEAKER SECTION */
+.speaker-section {
+    position: relative;
+    width: calc(100% - 32px);
+    max-width: 1280px;
+    margin: 24px auto;
+    padding: 96px 24px 104px;
+
+    background: linear-gradient(135deg,
+            #E9DCC9 0%,
+            #E2CFB6 55%,
+            #D9C2A5 100%);
+
+    border: 1px solid rgba(185, 125, 58, 0.2);
+    border-radius: 32px;
+    overflow: hidden;
+
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
+    isolation: isolate;
+}
+
+.speaker-section-container {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 1024px;
+    margin: 0 auto;
+}
+
+/* TABLET */
+@media (max-width: 768px) {
+    .speaker-section {
+        width: calc(100% - 24px);
+        margin: 12px auto;
+        padding: 72px 20px 80px;
+        border-radius: 26px;
+    }
+}
+
+/* MOBILE */
+@media (max-width: 480px) {
+    .speaker-section {
+        width: calc(100% - 20px);
+        margin: 10px auto;
+        padding: 56px 16px 64px;
+        border-radius: 22px;
+    }
+}
+
+/* SMALL MOBILE */
+@media (max-width: 360px) {
+    .speaker-section {
+        width: calc(100% - 16px);
+        margin: 8px auto;
+        padding: 48px 14px 56px;
+        border-radius: 18px;
+    }
 }

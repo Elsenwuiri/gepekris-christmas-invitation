@@ -26,6 +26,10 @@ function easeInOutCubic(t) {
     : 1 - Math.pow(-2 * t + 2, 3) / 2;
 }
 
+function easeOutCubic(t) {
+  return 1 - Math.pow(1 - t, 3);
+}
+
 function SectionHeading({ eyebrow, title, subtitle, light = false }) {
   return (
     <div className="mx-auto mb-12 max-w-3xl text-center">
@@ -163,11 +167,6 @@ function PosterHero({ cover = false, onOpen }) {
         </div>
       )}
 
-      <div className="poster-footer">
-        GEPEKRIS PASAR BARU
-        <span>•</span>
-        CHRISTMAS CELEBRATION 2026
-      </div>
     </section>
   );
 }
@@ -219,7 +218,11 @@ export default function App() {
     const distance = targetY - startY;
     if (Math.abs(distance) < 2) return;
 
-    const duration = Math.min(2000, Math.max(1400, Math.abs(distance) * 1.5));
+    const isDesktop = typeof window !== "undefined" && window.innerWidth >= 768;
+    const duration = isDesktop
+      ? Math.min(1200, Math.max(900, Math.abs(distance) * 0.9))
+      : Math.min(1800, Math.max(1400, Math.abs(distance) * 1.3));
+    const easingFn = isDesktop ? easeOutCubic : easeInOutCubic;
     let startTime = null;
     isScrollingRef.current = true;
 
@@ -244,7 +247,7 @@ export default function App() {
       if (!startTime) startTime = currentTime;
       const elapsed = currentTime - startTime;
       const progress = Math.min(elapsed / duration, 1);
-      const easedProgress = easeInOutCubic(progress);
+      const easedProgress = easingFn(progress);
 
       window.scrollTo(0, startY + distance * easedProgress);
 
@@ -338,7 +341,9 @@ export default function App() {
         });
     }
 
-    scrollToElementCinematic(nextSectionRef.current);
+    requestAnimationFrame(() => {
+      scrollToElementCinematic(nextSectionRef.current);
+    });
   };
 
   const toggleMusic = () => {
@@ -415,7 +420,7 @@ export default function App() {
       <section
         id="verse"
         ref={nextSectionRef}
-        className="relative bg-midnight px-6 py-24 sm:py-32 scroll-mt-0"
+        className="section-verse relative px-6 py-24 sm:py-32 scroll-mt-0"
       >
         <div
           className="absolute inset-0 opacity-20"
@@ -434,14 +439,14 @@ export default function App() {
           />
 
           <p className="eyebrow font-display text-[24px] font-semibold uppercase tracking-[0.2em] text-champagne sm:text-[24px]">
-            THE MESSAGE OF CHRISTMAS
+            PESAN NATAL
           </p>
 
           <p className="mt-4 font-display text-[16px] font-medium uppercase tracking-[0.2em] text-champagne sm:text-[20px]">
             {event.bibleReference} {event.bibleTranslation}
           </p>
 
-          <div className="mx-auto mt-8 max-w-4xl border border-champagne/25 bg-white/5 px-6 py-8 font-display text-lg leading-relaxed text-ivory sm:px-10 sm:py-10 sm:text-xl lg:text-2xl">
+          <div className="mx-auto mt-8 max-w-4xl border border-champagne/40 bg-white/10 px-6 py-8 font-display text-lg leading-relaxed text-ivory sm:px-10 sm:py-10 sm:text-xl lg:text-2xl">
             {event.bibleText || (
               <>
                 <p>
@@ -475,7 +480,7 @@ export default function App() {
 
       <section
         id="countdown"
-        className="bg-espresso px-6 py-24 sm:py-28"
+        className="section-countdown px-6 py-24 sm:py-28"
       >
         <div className="mx-auto max-w-5xl">
           <div className="text-center">
@@ -500,7 +505,7 @@ export default function App() {
 
       <section
         id="event"
-        className="bg-midnight px-6 py-24 sm:py-28"
+        className="section-event px-6 py-24 sm:py-28"
       >
         <div className="mx-auto max-w-6xl">
           <div className="text-center">
@@ -602,14 +607,11 @@ export default function App() {
         </div>
       </section>
 
-      <section
-        id="speaker"
-        className="bg-cream px-6 py-24 sm:py-28"
-      >
-        <div className="mx-auto max-w-5xl">
+      <section id="speaker" className="section-speaker px-6 py-24 sm:py-28">
+        <div className="speaker-section-container">
           <div className="text-center">
-            <p className="font-display mb-10 text-[20px] font-semibold uppercase tracking-[0.3em] text-antique sm:text-[24px]">
-              Christmas Speaker
+            <p className="eyebrow mb-4 font-display text-[24px] font-semibold uppercase tracking-[0.2em] text-champagne sm:text-[24px]">
+              PEMBICARA NATAL
             </p>
 
           </div>
@@ -631,9 +633,7 @@ export default function App() {
             </div>
 
             <div className="speaker-copy">
-              <p className="font-display text-[20px] font-medium uppercase tracking-[0.18em] text-antique sm:text-[24px]">
-                Pembicara Natal
-              </p>
+
 
               <h3 className="mt-3 font-display text-[42px] font-medium italic tracking-wide text-espresso sm:text-[52px] lg:text-[60px]">
                 {event.speaker}
@@ -649,7 +649,7 @@ export default function App() {
 
       <section
         id="teaser-contact"
-        className="bg-espresso px-6 py-24 sm:py-28"
+        className="section-teaser px-6 py-24 sm:py-28"
       >
         <div className="mx-auto max-w-6xl">
           <div className="text-center">
@@ -691,7 +691,7 @@ export default function App() {
 
             <div>
               <p className="eyebrow font-sans text-xs font-semibold uppercase tracking-[0.2em] text-champagne sm:text-sm">
-                Contact
+                Kontak
               </p>
 
               <h3 className="mt-3 font-display text-3xl text-ivory sm:text-4xl">
@@ -738,7 +738,7 @@ export default function App() {
                     </p>
 
                     <p className="mt-1 text-xs text-ivory/55">
-                      Follow us on Instagram
+                      @gepekrispb
                     </p>
                   </div>
 
@@ -759,7 +759,7 @@ export default function App() {
       </section>
 
 
-      <footer className="closing-section bg-midnight px-6 pb-14 pt-20 text-center">
+      <footer className="closing-section section-footer px-6 pb-14 pt-20 text-center">
         <div className="ornament text-champagne">
           <span />
           ✦
@@ -780,10 +780,18 @@ export default function App() {
             Jiwa <span className="italic text-champagne">&</span> Nafas Natal
           </h2>
 
-          <p className="mt-4 font-display text-[13px] font-medium uppercase tracking-[0.25em] text-ivory/50 sm:text-[15px]">
-            GEPEKRIS Pasar Baru
-            <span className="mx-3 text-champagne/60">·</span>
-            13 December 2026
+          <p className="mt-4 font-display text-[13px] font-medium uppercase tracking-[0.18em] text-ivory/50 sm:text-[15px] sm:tracking-[0.25em]">
+            <span className="block sm:inline">
+              GEPEKRIS Pasar Baru
+            </span>
+
+            <span className="hidden sm:inline mx-3 text-champagne/60">
+              ·
+            </span>
+
+            <span className="block mt-1 sm:inline sm:mt-0">
+              13 December 2026
+            </span>
           </p>
 
           <div className="mx-auto my-8 h-px w-16 bg-champagne/40" />
@@ -808,7 +816,7 @@ export default function App() {
               </span>
             </button>
 
-            <p className="mt-4 font-display text-[14px] italic text-ivory/40">
+            <p className="mt-4 font-display text-[14px] italic text-ivory/50">
               Sebarkan sukacita Natal kepada keluarga dan sahabat.
             </p>
           </div>
@@ -818,7 +826,7 @@ export default function App() {
               GEPEKRIS PASAR BARU
             </p>
 
-            <p className="mt-2 font-display text-[12px] italic tracking-wide text-ivory/30">
+            <p className="mt-2 font-display text-[12px] italic tracking-wide text-ivory/50">
               © 2026 · All Rights Reserved
             </p>
           </div>
