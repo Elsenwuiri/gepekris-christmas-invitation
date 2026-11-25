@@ -633,9 +633,7 @@ export default function App() {
             </div>
 
             <div className="speaker-copy">
-
-
-              <h3 className="mt-3 font-display text-[42px] font-medium italic tracking-wide text-espresso sm:text-[52px] lg:text-[60px]">
+              <h3 className="mt-3 whitespace-nowrap font-display text-[clamp(25px,8vw,42px)] font-medium italic tracking-[0.02em] text-espresso sm:text-[52px] sm:tracking-wide lg:text-[60px]">
                 {event.speaker}
               </h3>
 
